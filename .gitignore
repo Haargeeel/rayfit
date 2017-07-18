@@ -1,2 +1,8 @@
 *.styl
 .DS_STORE
+client_secret.json
+secret.json
+my_token
+data.json
+rayfit
+config.js
