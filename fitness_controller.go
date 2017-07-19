@@ -51,7 +51,8 @@ func CreateConfig() {
 
 func GetOauth2Link() string {
 	offline := oauth2.SetAuthURLParam("access_type", "offline")
-	return config.AuthCodeURL("", offline)
+	force := oauth2.SetAuthURLParam("approval_prompt", "force")
+	return config.AuthCodeURL("", offline, force)
 }
 
 func GetToken(code string) *oauth2.Token {
