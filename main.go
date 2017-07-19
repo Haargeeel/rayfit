@@ -10,10 +10,11 @@ import (
 	"os"
 
 	"github.com/Joker/jade"
+	"github.com/namsral/flag"
 )
 
 var PORT = "3000"
-var HOST = "localhost" + PORT
+var HOST string
 
 type Page struct {
 	OAuth2Link string
@@ -121,6 +122,8 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	flag.StringVar(&HOST, "HOST", "localhost:"+PORT, "host for the oauth callback")
+	flag.Parse()
 	go FitnessRoutine()
 	http.HandleFunc("/", viewHandler)
 	http.Handle("/css/", http.StripPrefix("/css/", http.FileServer(http.Dir("css"))))

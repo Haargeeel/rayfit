@@ -37,6 +37,8 @@ func GetConfig() *oauth2.Config {
 		fmt.Printf("\nCannot create OAuth2 Config: %v", err)
 	}
 
+	Config.RedirectURL = "http://" + HOST + "/oauth2callback"
+
 	return Config
 }
 
