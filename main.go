@@ -8,20 +8,16 @@ import (
 	"net/http"
 	"net/url"
 	"os"
-	"time"
 
 	"github.com/Joker/jade"
 )
 
 var PORT = "3000"
+var HOST = "localhost" + PORT
 
 type Page struct {
 	OAuth2Link string
 	Distance   float64
-}
-
-func millisToTime(t int64) time.Time {
-	return time.Unix(0, t*nanosPerMilli)
 }
 
 func Exists(filename string) bool {
@@ -42,31 +38,6 @@ type GeoUser struct {
 }
 
 func viewHandler(w http.ResponseWriter, r *http.Request) {
-	// session, err := mgo.Dial("localhost")
-	// if err != nil {
-	// panic(err)
-	// }
-	// defer session.Close()
-
-	// // Optional. Switch the session to a monotonic behavior.
-	// session.SetMode(mgo.Monotonic, true)
-
-	// c := session.DB("main").C("geo_user")
-	// // err = c.Insert(&Person{"Ale", "+55 53 8116 9639"},
-	// // &Person{"Cla", "+55 53 8402 8510"})
-	// // if err != nil {
-	// // log.Fatal(err)
-	// // }
-
-	// result := GeoUser{}
-	// err = c.Find(bson.M{"first_name": "Ray"}).One(&result)
-	// if err != nil {
-	// log.Fatal(err)
-	// }
-
-	// for i, x := range result.Ips {
-	// fmt.Printf("HALLO x: %s, i: %d\n", x, i)
-	// }
 
 	hasToken := Exists("my_token")
 	if hasToken {
@@ -85,6 +56,9 @@ func viewHandler(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			fmt.Printf("\nTemplate parse error: %v", err)
 			return
+		}
+		if !Exists("data.json") {
+			CreateDistanceData()
 		}
 		buf, err = ioutil.ReadFile("data.json")
 		if err != nil {
@@ -147,7 +121,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	go LogDistanceData()
+	go FitnessRoutine()
 	http.HandleFunc("/", viewHandler)
 	http.Handle("/css/", http.StripPrefix("/css/", http.FileServer(http.Dir("css"))))
 	http.Handle("/js/", http.StripPrefix("/js/", http.FileServer(http.Dir("js"))))
