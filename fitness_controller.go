@@ -16,7 +16,6 @@ const nanosPerMilli = 1e6
 
 var (
 	start        = time.Date(2017, time.April, 1, 0, 0, 0, 0, time.UTC)
-	end          = time.Date(2017, time.July, 15, 0, 0, 0, 0, time.UTC)
 	dataStreamId string
 )
 
@@ -102,6 +101,8 @@ func GetDistanceData() *fitness.Dataset {
 			dataStreamId = v.DataStreamId
 		}
 	}
+
+	end := time.Now()
 
 	timeRange := fmt.Sprintf("%v-%v", start.UnixNano(), end.UnixNano())
 
