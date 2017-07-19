@@ -6,7 +6,6 @@ import (
 	"html/template"
 	"io/ioutil"
 	"net/http"
-	"net/url"
 	"os"
 
 	"github.com/Joker/jade"
@@ -26,16 +25,6 @@ func Exists(filename string) bool {
 		return false
 	}
 	return true
-}
-
-type GeoUser struct {
-	Email       string
-	Name        string
-	Ips         []string
-	Geo         string
-	Country     string
-	Region_name string
-	City        string
 }
 
 func viewHandler(w http.ResponseWriter, r *http.Request) {
@@ -92,8 +81,7 @@ func viewHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func callbackHandler(w http.ResponseWriter, r *http.Request) {
-	values, _ := url.ParseQuery(r.URL.RawQuery)
-	token := GetToken(values.Get("code"))
+	token := GetToken(r.FormValue("code"))
 	if token == nil {
 		return
 	}
