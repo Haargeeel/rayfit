@@ -3,12 +3,20 @@ html(lang="en")
   head
     title Ray Fit
     link(rel="stylesheet" href="/css/style.css")
-    script(src="/js/script.js" async="")
+    link(rel="stylesheet" href="/css/background.css")
   body
-    h1 Watch your steps
-    .shoes
-      .left
-        img(src="/static/shoe.png")
-      .right
-        img(src="/static/shoe.png")
-    p {{.Distance}} km
+    #stars
+    #stars2
+    #stars3
+    #playground
+      .distance
+        span {{.Distance}} km
+      .earth
+        img(src="/static/earth.png")
+      #distance
+        #me
+          img(src="/static/astronaut.png")
+      .iss
+        img(src="/static/space_ship.png")
+    script const myDistance={{.Distance}}
+    script(src="/js/script.js" async="")
