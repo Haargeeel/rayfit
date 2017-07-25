@@ -87,7 +87,7 @@ func FitnessRoutine() {
 			<-waitForSecretFile.C
 			continue
 		}
-		GetDistanceData()
+		CreateDistanceData()
 		<-t.C
 	}
 }

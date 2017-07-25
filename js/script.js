@@ -4,4 +4,5 @@ window.onload = function() {
   const me = document.getElementById('me')
   const distanceWidth = distanceDiv.getBoundingClientRect().width
   me.style.left = `${myDistance * distanceWidth / orbitISS}px`
+  me.style.display = 'block'
 }
