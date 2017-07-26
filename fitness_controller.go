@@ -55,6 +55,8 @@ func CreateDistanceData() {
 	latestStartNano := start.UnixNano()
 	kmLastDay := 0.0
 	totalKm := 0.0
+	var days []*Day
+	var lastDay *Day
 
 	for i, set := range data.Point {
 		if i == 0 {
@@ -62,9 +64,18 @@ func CreateDistanceData() {
 		}
 		if latestStartNano < set.StartTimeNanos {
 			totalKm = totalKm + data.Point[i-1].Value[0].FpVal/1000
+			day := &Day{
+				StartTime: latestStartNano,
+				Meters:    data.Point[i-1].Value[0].FpVal,
+			}
+			days = append(days, day)
 			latestStartNano = set.StartTimeNanos
 		}
 		if i == len(data.Point)-1 {
+			lastDay = &Day{
+				StartTime: latestStartNano,
+				Meters:    set.Value[0].FpVal,
+			}
 			kmLastDay = set.Value[0].FpVal / 1000
 		}
 	}
@@ -76,6 +87,7 @@ func CreateDistanceData() {
 	}
 
 	SaveBulk(locationData)
+	SaveDays(days, lastDay)
 }
 
 func FitnessRoutine() {
