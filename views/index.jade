@@ -12,10 +12,16 @@ html(lang="en")
       .earth
         img(src="/static/earth.png")
       #distance
-        span {{.Distance}} of 382km
         #me
           img(src="/static/astronaut.png")
-      .iss
-        img(src="/static/space_ship.png")
+          span.distance {{.Distance}}km
+        #iss
+          span.name ISS
+          img(src="/static/space_ship.png")
+          span.distance 382km
+        #hubble
+          span.name Hubble
+          img(src="/static/hubble.png")
+          span.distance 595km
     script const myDistance={{.Distance}}
     script(src="/js/script.js" async="")
