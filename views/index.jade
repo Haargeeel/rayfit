@@ -3,7 +3,7 @@ html(lang="en")
   head
     title Ray Fit
     link(rel="stylesheet" href="/css/style.css")
-    link(rel="stylesheet" href="/css/background.css")
+    //- link(rel="stylesheet" href="/css/background.css")
   body
     #stars
     #stars2
@@ -15,13 +15,15 @@ html(lang="en")
         #me
           img(src="/static/astronaut.png")
           span.distance {{.Distance}}km
-        #iss
-          span.name ISS
-          img(src="/static/space_ship.png")
-          span.distance 382km
+      #hubbleWrapper
         #hubble
           span.name Hubble
           img(src="/static/hubble.png")
           span.distance 595km
+      #issWrapper
+        #iss
+          span.name ISS
+          img(src="/static/space_ship.png")
+          span.distance 382km
     script const myDistance={{.Distance}}
     script(src="/js/script.js" async="")

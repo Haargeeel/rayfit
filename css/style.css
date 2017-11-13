@@ -9,9 +9,10 @@ body {
 .earth {
   position: absolute;
   top: 50%;
-  transform: translate(-20px, -50%);
-  height: 250px;
-  width: 160px;
+  transform: translateY(-50%);
+  height: 400px;
+  width: 400px;
+  animation: 200s infinite linear earthRotate;
 }
 .earth img {
   position: absolute;
@@ -20,8 +21,8 @@ body {
 }
 #distance {
   position: absolute;
-  left: 160px;
-  width: calc(100% - 380px);
+  left: 400px;
+  width: calc(100% - 600px);
   top: 50%;
   transform: translateY(-50%);
   border-top: 1px dashed rgba(255,255,255,0.1);
@@ -51,47 +52,133 @@ body {
   bottom: -10px;
   transform: translate(-50%, 100%);
 }
-#distance #iss {
+#hubbleWrapper {
+  position: absolute;
+  left: 200px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  animation: 13.2s infinite linear orbit;
+  border-radius: 5000px;
+  border: 2px solid #c0ffee;
+}
+#hubbleWrapper #hubble {
   position: absolute;
   display: none;
-  transform: translateY(-50%);
-  height: 93px;
-  width: 150px;
-}
-#distance #iss img {
-  position: absolute;
-  max-width: 100%;
-  max-height: 100%;
-}
-#distance #iss .name {
-  position: absolute;
-  top: -10px;
-  transform: translate(-50%, -100%);
-}
-#distance #iss .distance {
-  position: absolute;
-  bottom: -10px;
-  transform: translate(-50%, 100%);
-}
-#distance #hubble {
-  position: absolute;
-  display: none;
-  transform: translate(100%, -50%);
+  transform: translate(50%, -50%);
+  top: 50%;
+  right: 0;
   height: 85px;
   width: 100px;
 }
-#distance #hubble img {
+#hubbleWrapper #hubble img {
   position: absolute;
   max-width: 100%;
   max-height: 100%;
 }
-#distance #hubble .name {
+#hubbleWrapper #hubble .name {
   position: absolute;
   top: -10px;
   transform: translate(-50%, -100%);
 }
-#distance #hubble .distance {
+#hubbleWrapper #hubble .distance {
   position: absolute;
   bottom: -10px;
   transform: translate(-50%, 100%);
+}
+#issWrapper {
+  position: absolute;
+  left: 200px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  animation: 12.9s infinite linear orbit;
+  border-radius: 5000px;
+  border: 2px solid #fff;
+}
+#issWrapper #iss {
+  position: absolute;
+  display: none;
+  transform: translate(50%, -50%) rotate(90deg);
+  top: 50%;
+  right: 0;
+  height: 93px;
+  width: 150px;
+}
+#issWrapper #iss img {
+  position: absolute;
+  max-width: 100%;
+  max-height: 100%;
+}
+#issWrapper #iss .name {
+  position: absolute;
+  top: -10px;
+  transform: translate(-50%, -100%);
+}
+#issWrapper #iss .distance {
+  position: absolute;
+  bottom: -10px;
+  transform: translate(-50%, 100%);
+}
+@-moz-keyframes earthRotate {
+  0% {
+    transform: translateY(-50%) rotateZ(0deg);
+  }
+  100% {
+    transform: translateY(-50%) rotateZ(360deg);
+  }
+}
+@-webkit-keyframes earthRotate {
+  0% {
+    transform: translateY(-50%) rotateZ(0deg);
+  }
+  100% {
+    transform: translateY(-50%) rotateZ(360deg);
+  }
+}
+@-o-keyframes earthRotate {
+  0% {
+    transform: translateY(-50%) rotateZ(0deg);
+  }
+  100% {
+    transform: translateY(-50%) rotateZ(360deg);
+  }
+}
+@keyframes earthRotate {
+  0% {
+    transform: translateY(-50%) rotateZ(0deg);
+  }
+  100% {
+    transform: translateY(-50%) rotateZ(360deg);
+  }
+}
+@-moz-keyframes orbit {
+  0% {
+    transform: translate(-50%, -50%) rotateZ(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotateZ(360deg);
+  }
+}
+@-webkit-keyframes orbit {
+  0% {
+    transform: translate(-50%, -50%) rotateZ(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotateZ(360deg);
+  }
+}
+@-o-keyframes orbit {
+  0% {
+    transform: translate(-50%, -50%) rotateZ(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotateZ(360deg);
+  }
+}
+@keyframes orbit {
+  0% {
+    transform: translate(-50%, -50%) rotateZ(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotateZ(360deg);
+  }
 }
