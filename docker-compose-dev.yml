@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  rayfit:
+    build:
+      context: .
+      dockerfile: Dockerfile-Dev
+    ports:
+      - "3000:3000"
+    environment:
+      - GOPATH=/usr/go
+    volumes:
+      - "$GOPATH:/usr/go"
+      - ".:/usr/go/src/rayfit"

@@ -1,0 +1,9 @@
+FROM golang:alpine
+
+RUN mkdir -p /usr/go/src/rayfit
+
+WORKDIR /usr/go/src/rayfit
+
+EXPOSE 3000
+
+CMD ["sh", "start.sh"]
